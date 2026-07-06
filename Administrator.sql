@@ -1,0 +1,9 @@
+CREATE TABLE Administrator (
+    Admin_ID INT IDENTITY(1,1) PRIMARY KEY,
+    Admin_Name NVARCHAR(50) NOT NULL,
+    Phone NVARCHAR(20) NOT NULL,
+    Department NVARCHAR(100) NOT NULL,
+    Username NVARCHAR(50) NOT NULL UNIQUE,
+    Password NVARCHAR(255) NOT NULL
+);
+
