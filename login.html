@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>Login</title>
+</head>
+
+<body>
+
+<h2>管理者登入</h2>
+
+<form id="loginForm">
+
+    <input type="text" name="Username" placeholder="帳號"><br><br>
+    <input type="password" name="Password" placeholder="密碼"><br><br>
+
+    <button type="button" onclick="login()">登入</button>
+
+</form>
+
+<script>
+function login(){
+
+    let form = document.getElementById("loginForm");
+    let data = new FormData(form);
+
+    fetch("login_api.php", {
+        method: "POST",
+        body: data
+    })
+    .then(res => res.json())
+    .then(res => {
+
+        if(res.status === "success"){
+            // 可帶資料到下一頁
+            sessionStorage.setItem("admin", JSON.stringify(res.data));
+            window.location = "show_admin.php";
+        } else {
+            alert("帳號或密碼錯誤");
+        }
+
+    });
+
+}
+</script>
+
+</body>
+</html>
